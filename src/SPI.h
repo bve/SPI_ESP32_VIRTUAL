@@ -32,11 +32,11 @@
 class SPISettings
 {
 public:
-    SPISettings() :_clock(1000000), _bitOrder(SPI_MSBFIRST), _dataMode(SPI_MODE0) {}
-    SPISettings(uint32_t clock, uint8_t bitOrder, uint8_t dataMode) :_clock(clock), _bitOrder(bitOrder), _dataMode(dataMode) {}
-    uint32_t _clock;
-    uint8_t  _bitOrder;
-    uint8_t  _dataMode;
+    virtual SPISettings() :_clock(1000000), _bitOrder(SPI_MSBFIRST), _dataMode(SPI_MODE0) {}
+    virtual SPISettings(uint32_t clock, uint8_t bitOrder, uint8_t dataMode) :_clock(clock), _bitOrder(bitOrder), _dataMode(dataMode) {}
+    virtual uint32_t _clock;
+    virtual uint8_t  _bitOrder;
+    virtual uint8_t  _dataMode;
 };
 
 class SPIClass
@@ -58,7 +58,7 @@ private:
     void writePattern_(const uint8_t * data, uint8_t size, uint8_t repeat);
 
 public:
-    SPIClass(uint8_t spi_bus=HSPI);
+    virtual SPIClass(uint8_t spi_bus=HSPI);
     virtual ~SPIClass();
     virtual void begin(int8_t sck=-1, int8_t miso=-1, int8_t mosi=-1, int8_t ss=-1);
     virtual void end();
